@@ -13,7 +13,7 @@ namespace Demo03_DBFirst_EFCorePowerTools.Data.Contexts
 {
     public partial interface INorthwindDbContextProcedures
     {
-        Task<List<CustOrderHistResult>> CustOrderHistAsync(string customerID, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
-        Task<List<CustOrdersDetailResult>> CustOrdersDetailAsync(int? orderID, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<List<NewProductInsertCommandResult>> NewProductInsertCommandAsync(string productName, int? supplierID, int? categoryID, string quantityPerUnit, decimal? unitPrice, short? unitsInStock, short? unitsOnOrder, short? reorderLevel, bool? discontinued, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<List<NewProductSelectCommandResult>> NewProductSelectCommandAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
     }
 }

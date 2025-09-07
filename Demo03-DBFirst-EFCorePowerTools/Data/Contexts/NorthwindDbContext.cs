@@ -15,11 +15,29 @@ public partial class NorthwindDbContext : DbContext
     {
     }
 
+    public virtual DbSet<AlphabeticalListOfProduct> AlphabeticalListOfProducts { get; set; }
+
     public virtual DbSet<Category> Categories { get; set; }
+
+    public virtual DbSet<CategorySalesFor1997> CategorySalesFor1997s { get; set; }
+
+    public virtual DbSet<Customer> Customers { get; set; }
+
+    public virtual DbSet<CustomerDemographic> CustomerDemographics { get; set; }
+
+    public virtual DbSet<Employee> Employees { get; set; }
+
+    public virtual DbSet<EmployeeTerritory> EmployeeTerritories { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfiguration(new Configurations.AlphabeticalListOfProductConfiguration());
         modelBuilder.ApplyConfiguration(new Configurations.CategoryConfiguration());
+        modelBuilder.ApplyConfiguration(new Configurations.CategorySalesFor1997Configuration());
+        modelBuilder.ApplyConfiguration(new Configurations.CustomerConfiguration());
+        modelBuilder.ApplyConfiguration(new Configurations.CustomerDemographicConfiguration());
+        modelBuilder.ApplyConfiguration(new Configurations.EmployeeConfiguration());
+        modelBuilder.ApplyConfiguration(new Configurations.EmployeeTerritoryConfiguration());
 
         OnModelCreatingPartial(modelBuilder);
     }

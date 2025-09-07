@@ -43,7 +43,7 @@ namespace Demo03_DBFirst_EFCorePowerTools.Data.Contexts
             _context = context;
         }
 
-        public virtual async Task<List<CustOrderHistResult>> CustOrderHistAsync(string customerID, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        public virtual async Task<List<NewProductInsertCommandResult>> NewProductInsertCommandAsync(string productName, int? supplierID, int? categoryID, string quantityPerUnit, decimal? unitPrice, short? unitsInStock, short? unitsOnOrder, short? reorderLevel, bool? discontinued, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
         {
             var parameterreturnValue = new SqlParameter
             {
@@ -56,21 +56,72 @@ namespace Demo03_DBFirst_EFCorePowerTools.Data.Contexts
             {
                 new SqlParameter
                 {
-                    ParameterName = "CustomerID",
-                    Size = 10,
-                    Value = customerID ?? Convert.DBNull,
-                    SqlDbType = System.Data.SqlDbType.NChar,
+                    ParameterName = "ProductName",
+                    Size = 80,
+                    Value = productName ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.NVarChar,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "SupplierID",
+                    Value = supplierID ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.Int,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "CategoryID",
+                    Value = categoryID ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.Int,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "QuantityPerUnit",
+                    Size = 40,
+                    Value = quantityPerUnit ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.NVarChar,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "UnitPrice",
+                    Precision = 19,
+                    Scale = 4,
+                    Value = unitPrice ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.Money,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "UnitsInStock",
+                    Value = unitsInStock ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.SmallInt,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "UnitsOnOrder",
+                    Value = unitsOnOrder ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.SmallInt,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "ReorderLevel",
+                    Value = reorderLevel ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.SmallInt,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "Discontinued",
+                    Value = discontinued ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.Bit,
                 },
                 parameterreturnValue,
             };
-            var _ = await _context.SqlQueryToListAsync<CustOrderHistResult>("EXEC @returnValue = [dbo].[CustOrderHist] @CustomerID = @CustomerID", sqlParameters, cancellationToken);
+            var _ = await _context.SqlQueryToListAsync<NewProductInsertCommandResult>("EXEC @returnValue = [dbo].[NewProductInsertCommand] @ProductName = @ProductName, @SupplierID = @SupplierID, @CategoryID = @CategoryID, @QuantityPerUnit = @QuantityPerUnit, @UnitPrice = @UnitPrice, @UnitsInStock = @UnitsInStock, @UnitsOnOrder = @UnitsOnOrder, @ReorderLevel = @ReorderLevel, @Discontinued = @Discontinued", sqlParameters, cancellationToken);
 
             returnValue?.SetValue(parameterreturnValue.Value);
 
             return _;
         }
 
-        public virtual async Task<List<CustOrdersDetailResult>> CustOrdersDetailAsync(int? orderID, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        public virtual async Task<List<NewProductSelectCommandResult>> NewProductSelectCommandAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
         {
             var parameterreturnValue = new SqlParameter
             {
@@ -81,15 +132,9 @@ namespace Demo03_DBFirst_EFCorePowerTools.Data.Contexts
 
             var sqlParameters = new []
             {
-                new SqlParameter
-                {
-                    ParameterName = "OrderID",
-                    Value = orderID ?? Convert.DBNull,
-                    SqlDbType = System.Data.SqlDbType.Int,
-                },
                 parameterreturnValue,
             };
-            var _ = await _context.SqlQueryToListAsync<CustOrdersDetailResult>("EXEC @returnValue = [dbo].[CustOrdersDetail] @OrderID = @OrderID", sqlParameters, cancellationToken);
+            var _ = await _context.SqlQueryToListAsync<NewProductSelectCommandResult>("EXEC @returnValue = [dbo].[NewProductSelectCommand]", sqlParameters, cancellationToken);
 
             returnValue?.SetValue(parameterreturnValue.Value);
 

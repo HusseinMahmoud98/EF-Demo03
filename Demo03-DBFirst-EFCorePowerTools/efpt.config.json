@@ -20,11 +20,39 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[CustOrderHist]",
+         "Name": "[dbo].[CustomerCustomerDemo]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CustomerDemographics]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Customers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Employees]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[EmployeeTerritories]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Alphabetical list of products]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[Category Sales for 1997]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[NewProductInsertCommand]",
          "ObjectType": 1
       },
       {
-         "Name": "[dbo].[CustOrdersDetail]",
+         "Name": "[dbo].[NewProductSelectCommand]",
          "ObjectType": 1
       }
    ],
